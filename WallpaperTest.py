@@ -30,6 +30,7 @@ def findImages():
 	urls = []
 	for submision in sReddit.get_hot(Limit=None):
 		sURL = submision.url
+		sURL = sURL.rsplit("?", 1)[0]
 		sTitle = submision.title
 		if sURL.lower().endswith(FILETYPES):
 			urls.append(sURL)
