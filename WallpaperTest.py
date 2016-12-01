@@ -6,7 +6,7 @@ import os
 
 USERAGENT = "/u/qiman3's Wallpaper finder"
 SUBREDDIT = "ImaginaryBestOf"
-IMAGEFOLDERPATH = "C:/Users/adam/Documents/Python_Scripts/Wallpaper_Test/"
+IMAGEFOLDERPATH = "C:/Pics"
 MAXPOSTS= 100
 TIMEBETWEENIMAGES = 30
 print("LOGGING IN!")
