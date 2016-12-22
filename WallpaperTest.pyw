@@ -10,17 +10,20 @@ from itertools import cycle
 USERAGENT = "/u/qiman3's Wallpaper finder"
 SUBREDDIT = "ImaginaryBestOf"
 IMAGEFOLDERPATH = "C:/Pics"
-MAXPOSTS= 100
+MAXPOSTS= 25
 TIMEBETWEENIMAGES = 30
 SPI_SETDESKWALLPAPER = 20
 FILETYPES = ('.jpg', '.jpeg', '.png')
 
 def download_images(url_list):
-	for idx, url in url_list:
+	for idx, url in enumerate(url_list):
 		ext = os.path.splitext(url)[1]
 		local_name = "{:0>4}{}".format(idx, ext)
 		local_path = os.path.join(IMAGEFOLDERPATH, local_name)
-		urllib.request.urlretrieve(sURL,local_path)
+		try:
+			urllib.request.urlretrieve(url,local_path)
+		except urllib.error.HTTPError as e:
+			pass
 
 def findImages():
 	print("LOGGING IN!")
@@ -28,7 +31,7 @@ def findImages():
 	print("LOGGED IN!")
 	sReddit = r.get_subreddit(SUBREDDIT)
 	urls = []
-	for submision in sReddit.get_hot(Limit=None):
+	for submision in sReddit.get_hot(Limit=MAXPOSTS):
 		sURL = submision.url
 		sURL = sURL.rsplit("?", 1)[0]
 		sTitle = submision.title
